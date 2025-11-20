@@ -54,3 +54,23 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
+file:
+  # 分片上传目录
+  chunk-dir: ./data/chunks/temp
+  chunk-merge-dir: ./data/chunks/merging
+  chunk-expire-hours: 24
+  
+  # 最终文件存储目录
+  upload-dir: ./data/uploads
+  upload-image-dir: ./data/uploads/images
+  upload-document-dir: ./data/uploads/documents
+  upload-video-dir: ./data/uploads/video
+  upload-temp-dir: ./data/uploads/temp
+  public-base-url: http://localhost:8080/api
+  
+  
+  # 文件限制
+  max-size: 10MB
+  allowed-image-types: "image/jpeg,image/png,image/gif"
+  allowed-document-types: "application/pdf"
+  allowed-video-types: "video/mp4,video/avi,video/mkv,video/mov"

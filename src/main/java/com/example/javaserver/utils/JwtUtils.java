@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -58,4 +59,31 @@ public class JwtUtils {
             return false;
         }
     }
+
+    /**
+     * 根据token解析出用户ID
+     */
+    public String getUserId(String token){
+        if (token == null || token.trim().isEmpty()) {
+            return null;
+        }
+
+        String cleanedToken = token.trim();
+        if (cleanedToken.toLowerCase(Locale.ROOT).startsWith("bearer ")) {
+            cleanedToken = cleanedToken.substring(7).trim();
+        }
+
+        try{
+            Jws<Claims> claims = Jwts.parserBuilder()
+            .setSigningKey(sign)
+            .build()
+            .parseClaimsJws(cleanedToken);
+            Claims body = claims.getBody();
+            return body.get("id", String.class);
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    
 }

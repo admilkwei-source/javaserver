@@ -2,6 +2,7 @@ package com.example.javaserver.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -12,14 +13,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private AuthInterceptor authInterceptor;
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(@NonNull InterceptorRegistry registry) {
         registry
             .addInterceptor(authInterceptor)
-            .addPathPatterns("/api/**")
+            .addPathPatterns("/**")
             .excludePathPatterns(
-                "/api/user/login",
-                "/api/user/register",
-                "/api/user/getCaptcha/**"
+                "/user/login",
+                "/user/register",
+                "/user/getCaptcha/**",
+                "/files/**"
             );
     }
 }

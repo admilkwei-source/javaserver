@@ -1,5 +1,5 @@
 spring:
   application:
-    name: goodorder
+    name: javaserver
   profiles:
     active: dev
