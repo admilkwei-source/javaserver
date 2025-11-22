@@ -21,6 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 "/user/login",
                 "/user/register",
                 "/user/getCaptcha/**",
+                "/user/getEncryptionKey",
                 "/files/**"
             );
     }
